@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*-coding:utf-8 -*
+"""reducer.py"""
 import sys
 
 current_word = None
@@ -22,5 +23,5 @@ print('Word\t[ (Document1, Count1), ... ]')
 for key,counts in doc_count.items():
     value = ""
     for doc,count in counts.items():
-        value += "({}, {}) ".format(doc, count)
+        value += "({} {}) ".format(doc, count)
     print("{}\t{}".format(key, value))

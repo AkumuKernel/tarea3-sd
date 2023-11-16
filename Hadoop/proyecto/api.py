@@ -39,12 +39,13 @@ def search(folder, opcion, number):
   wiki = wikipediaapi.Wikipedia(user_agent='Tarea3',language='en',extract_format=wikipediaapi.ExtractFormat.WIKI)
   page = wiki.page(opcion)
   if page.exists():
+     text = '{} {}<splittername>{}'.format(number,page.canonicalurl,json.dumps(page.text))
      isFile = os.path.isfile(f"./{folder}/search{number}.txt")
      if (isFile):
         os.remove(f"./{folder}/search{number}.txt")
 
      crear = open(f"./{folder}/search{number}.txt","wb") #open file in binary mode
-     crear.write(str(page.text).encode('utf-8'))
+     crear.write(text.encode('utf-8'))
      crear.close()
 
 for i in range(30):
