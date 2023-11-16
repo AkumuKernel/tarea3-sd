@@ -14,10 +14,10 @@ for line in sys.stdin:
     else:
         if current_word:
             # Output the inverted index
-            print '%s\t%s' % (current_word, ','.join(current_documents))
+            print(f'{current_word}\t{','.join(current_documents)}')
         current_documents = {document_id}
         current_word = word
 
 # Output the last inverted index if needed
 if current_word == word:
-    print '%s\t%s' % (current_word, ','.join(current_documents))
+    print(f'{current_word}\t{','.join(current_documents)}')

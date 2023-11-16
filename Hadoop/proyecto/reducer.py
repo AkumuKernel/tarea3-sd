@@ -1,26 +1,26 @@
-from operator import itemgetter 
-import sys 
+#!/usr/bin/env python
+# -*-coding:utf-8 -*
+import sys
 
 current_word = None
 current_count = 0
 word = None
 
-for line in sys.stdin: 
-	line = line.strip() 
-	word, count = line.split('\t', 1) 
-	try: 
-		count = int(count) 
-	except ValueError: 
-		continue
+doc_count = {}
+for line in sys.stdin:
+    result = line.replace("\n","").split('\t')
 
+    if result[0] in doc_count.keys():
+        if result[1] in doc_count[result[0]].keys():
+            doc_count[result[0]][result[1]] += 1
+        else:
+            doc_count[result[0]][result[1]] = 1
+    else:
+        doc_count[result[0]] = {result[1]: 1}
 
-	if current_word == word: 
-		current_count += count 
-	else: 
-		if current_word: 
-			print '%s\t%s' % (current_word, current_count) 
-		current_count = count 
-		current_word = word 
-
-if current_word == word: 
-	print '%s\t%s' % (current_word, current_count) 
+print('Word\t[ (Document1, Count1), ... ]')
+for key,counts in doc_count.items():
+    value = ""
+    for doc,count in counts.items():
+        value += "({}, {}) ".format(doc, count)
+    print("{}\t{}".format(key, value))

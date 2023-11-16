@@ -8,7 +8,10 @@ RUN apt-get update -y \
         curl \
         ssh \
         python3 \
+        python3-dev \
         python3-pip \
+        libpq-dev \
+        build-essential \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -53,9 +56,9 @@ RUN echo "export JAVA_HOME=/opt/java/openjdk/" >> $HADOOP_HOME/etc/hadoop/hadoop
 # Copia de archivos de configuración y script de entrada
 COPY core-site.xml hdfs-site.xml yarn-site.xml $HADOOP_HOME/etc/hadoop/
 COPY docker-entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-RUN pip install -r requeriments.txt
 
+COPY requeriments.txt .
+RUN pip install -r requeriments.txt
 # Exposición de puertos necesarios para Hadoop
 EXPOSE 50070 50075 50010 50020 50090 8020 9000 9864 9870 10020 19888 8088 8030 8031 8032 8033 8040 8042 22
 

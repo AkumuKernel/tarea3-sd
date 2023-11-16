@@ -1,63 +1,54 @@
-import requests
+import wikipediaapi
 import json
+import os
 
-palabras_wikipedia = [
+opcion = [
     "Albert Einstein",
-    "La Revolución Francesa",
-    "La Teoría de la Relatividad",
-    "El ADN",
-    "El Universo",
-    "La Historia de la Tierra",
-    "El Cerebro Humano",
-    "La Inteligencia Artificial",
-    "El Cambio Climático",
-    "La Evolución",
-    "La Democracia",
-    "La Libertad de Expresión",
-    "La Igualdad de Género",
-    "Los Derechos Humanos",
-    "La Pobreza",
-    "El Hambre",
-    "La Guerra",
-    "La Paz",
-    "La Esperanza de Vida",
-    "La Salud",
-    "La Educación",
-    "La Cultura",
-    "El Arte",
-    "La Literatura",
-    "La Música",
-    "El Cine",
-    "El Teatro",
-    "La Danza",
+    "The French Revolution",
+    "The Theory of Relativity",
+    "DNA",
+    "The Universe",
+    "The History of the Earth",
+    "The Human Brain",
+    "Artificial Intelligence",
+    "Climate Change",
+    "Evolution",
+    "Democracy",
+    "Freedom of Speech",
+    "Gender Equality",
+    "Human Rights",
+    "Poverty",
+    "Hunger",
+    "War",
+    "Peace",
+    "Life Expectancy",
+    "Health",
+    "Education",
+    "Culture",
+    "Art",
+    "Literature",
+    "Music",
+    "Film",
+    "Theatre",
+    "Dance",
+    "Basketball",
+    "Germany"
 ]
 
-url = "https://en.wikipedia.org/w/api.php"
-i = 1
-for entrada in palabras_wikipedia:
-    params = {
-        'format': 'json',
-        'action': 'query',
-        'prop': 'extracts',
-        'exintro': '',
-        'explaintext': '',
-        'redirects': 1,
-        'titles': entrada
-    }
+def search(folder, opcion, number):
+  wiki = wikipediaapi.Wikipedia(user_agent='Tarea3',language='en',extract_format=wikipediaapi.ExtractFormat.WIKI)
+  page = wiki.page(opcion)
+  if page.exists():
+     isFile = os.path.isfile(f"./{folder}/search{number}.txt")
+     if (isFile):
+        os.remove(f"./{folder}/search{number}.txt")
 
-    req = requests.get(
-        url,
-        params=params
-    ).json()
+     crear = open(f"./{folder}/search{number}.txt","wb") #open file in binary mode
+     crear.write(str(page.text).encode('utf-8'))
+     crear.close()
 
-    n_page = list(req['query']['pages'].keys())[0]
-    texto = req['query']['pages'][n_page]['extract']
-    texto = '{}<splittername>{}'.format(i, json.dumps(texto))
-
-    if i <= 15:
-        with open(f'../1_15/search{i}.txt', 'w') as f:
-            f.write(texto)
+for i in range(30):
+    if(i<15):
+        search('1_15', opcion[i], i+1)
     else:
-        with open(f'../16_30/search{i}.txt', 'w') as f:
-            f.write(texto)
-    i = i + 1
+        search('16_30', opcion[i], i+1)
