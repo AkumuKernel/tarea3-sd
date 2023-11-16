@@ -84,5 +84,5 @@ hdfs dfs -get /user/hduser/hduser/outhadoop/ /home/hduser/proyecto
 ```
 Iniciar buscador
 ```sh
-python busqueda.py
+python buscador.py
 ```
