@@ -8,6 +8,13 @@ Para poder tener los contenedores hechos para esta actividad se tiene que hacer 
 git clone https://github.com/AkumuKernel/tarea3-sd.git
 ```
 
+## Acciones previas
+
+Antes de iniciar el docker compose se debe poner el siguiente comando para que todo funcione de manera correcta, en el caso de sistemas Unix:
+```sh
+sudo chmod +x Hadoop/proyecto/docker-entrypoint.sh
+```
+
 ## Ejecución de instancias
 Para poder ejecutar los contenedores que fueron descargados gracias al paso anterior, se debe hacer lo siguiente en la carpeta raíz del proyecto:
 ```sh
