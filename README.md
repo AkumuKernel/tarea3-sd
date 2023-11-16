@@ -82,5 +82,7 @@ Extraer los archivos procesados
 ```sh
 hdfs dfs -get /user/hduser/hduser/outhadoop/ /home/hduser/proyecto
 ```
-
-
+Iniciar buscador
+```sh
+python buscador.py
+```
