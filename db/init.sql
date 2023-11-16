@@ -1,7 +1,11 @@
+CREATE TABLE paginas(
+    id INT NOT NULL PRIMARY KEY,
+    url TEXT NOT NULL
+);
+
 CREATE TABLE registros (
-    id SERIAL NOT NULL,
     palabra varchar NOT NULL,
-    numero int NOT NULL,
-    archivo int NOT NULL,
-    PRIMARY KEY (id)
+    documento INT NOT NULL REFERENCES paginas(id) ON DELETE CASCADE,
+    repeticiones INT NOT NULL,
+    CONSTRAINT tuplas UNIQUE (palabra, documento)
 );
