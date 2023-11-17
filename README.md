@@ -37,7 +37,7 @@ docker exec -it hadoop bash
 docker exec -it db bash
 ```
 
-## Ejecución del programa
+## Ejecución del programa paso a paso
 
 Dentro del contenedor de Hadoop se deben ingresar los siguientes comandos:
 Creación de carpeta para usuario:
@@ -86,3 +86,14 @@ Iniciar buscador
 ```sh
 python buscador.py
 ```
+
+## Ejecución del programa de forma simplificada
+Dar permisos de ejecución de *busqueda.sh*
+```sh
+sudo chmod +x busqueda.sh
+```
+Ejecutar el programa completo
+```sh
+bash busqueda.sh
+```
+
