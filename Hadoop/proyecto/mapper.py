@@ -2,6 +2,7 @@
 # -*-coding:utf-8 -*
 import sys
 import psycopg2
+import re
 
 connection = psycopg2.connect(  user = "postgres",
                                 password = "postgres",
@@ -19,6 +20,7 @@ for line in sys.stdin:
     name, url = name.split()
 
     # Replace punctuation and numerical values with empty strings
+    docs = re.sub(r'\W+', ' ', docs.replace("\n", ' ')).strip()
     for char in [",", ".", '"', "'", "(", ")", "\\", ";", ":", "$1", "$", "&", "="]:
         docs = docs.replace(char, '')
 
