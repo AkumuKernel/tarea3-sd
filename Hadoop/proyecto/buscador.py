@@ -1,6 +1,9 @@
+#!/usr/bin/env python
+# -*-coding:utf-8 -*
 import psycopg2
 import re
 import json
+import os
 
 connection = psycopg2.connect(  user = "postgres",
                                 password = "postgres",
@@ -30,6 +33,7 @@ try:
 
          opcion = input("Seleccione una opción: ")
          if opcion == "1":
+            os.system('cls' if os.name == 'nt' else 'clear')
             palabra = input("Inserte palabra: ")
 
             query = f"SELECT documento, repeticiones, url FROM paginas INNER JOIN registros ON paginas.id = registros.documento WHERE palabra = '{palabra}'"

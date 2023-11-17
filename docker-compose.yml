@@ -21,6 +21,7 @@ services:
     restart: always
     volumes:
       - ./Hadoop/proyecto:/home/hduser/proyecto
+      - ./Hadoop/busqueda.sh:/home/hduser/busqueda.sh
       #- ./Hadoop/buscador:/home/hduser/buscador
     ports:
       - 9864:9864
