@@ -36,7 +36,7 @@ try:
             os.system('cls' if os.name == 'nt' else 'clear')
             palabra = input("Inserte palabra: ")
 
-            query = f"SELECT documento, repeticiones, url FROM paginas INNER JOIN registros ON paginas.id = registros.documento WHERE palabra = '{palabra}'"
+            query = f"SELECT documento, repeticiones, url FROM paginas INNER JOIN registros ON paginas.id = registros.documento WHERE palabra = '{palabra}' ORDER BY repeticiones DESC LIMIT 5"
             cursor.execute(query)
 
             resultados = cursor.fetchall()
@@ -51,7 +51,7 @@ try:
          elif opcion == "2":
             break
          else:
-            print("Comando Incorrecto")
+            print("Opcion Incorrecta")
 
 except (Exception, psycopg2.Error) as error :
     print ("Error while connecting to PostgreSQL", error)

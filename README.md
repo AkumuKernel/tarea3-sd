@@ -88,10 +88,6 @@ python buscador.py
 ```
 
 ## Ejecución del programa de forma simplificada
-Dar permisos de ejecución de *busqueda.sh*
-```sh
-sudo chmod +x busqueda.sh
-```
 Ejecutar el programa completo
 ```sh
 bash busqueda.sh
